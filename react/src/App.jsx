@@ -1,39 +1,42 @@
 import { motion } from 'framer-motion';
 import './css/App.css'
-import img from './assets/tesla.jpg'
+import img from './assets/dice-png-41766.png'
 import Button from "@mui/material/Button";
+import { useState } from 'react';
+import Jeude from './components/Jeude';
 
 function App() {
-  const data = {
-    name : "Nikola Tesla",
-    job : "Inventor",
-    age : "86",
-    des: "a Serbian-American inventor, electrical engineer, mechanical engineer, and futurist who is best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
-    img : img
+
+  const [hideDice, setHideDice] = useState(0);
+  const [randomDice, setRandomDice] = useState(1);
+
+  const randomHideDice=()=>{
+    setHideDice(Math.floor(Math.random() * 6) + 1)
   }
+
+
+
  
   return (
     <div className="w-full flex-col gap-3  h-screen flex justify-center items-center ">
-      <motion.div className="card flex flex-col gap-2  w-96 justify-start overflow-hidden  items-center  ">
-        <motion.img
-          className="w-full h-52 object-cover aspect-square rounded-md "
-          src={data.img}
-          alt="image"
-        />
-        <div className="text-content flex w-full mt-4 flex-col gap-2 ">
-          <h1 className="text-2xl font-bold text-slate-900">{data.name}</h1>
-          <p className="text-slate-900 text-sm">{data.des}</p>
-          <div className="flex">
-            <Button
-              variant="outlined"
-              size="medium"
-               href="https://en.wikipedia.org/wiki/Nikola_Tesla"
-            >
-              Read More
-            </Button>
-          </div>
-        </div>
-      </motion.div>
+      <div className="rounded-md p-4 flex flex-col gap-2 border border-blue-300">
+        <img className="w-72 h-auto " src={img} alt="" />
+        <h1 className=" text-2xl mt-2 font-bold text-gray-900">
+          Play Dice Game
+        </h1>
+
+        {hideDice == 0 ? (
+          <Button
+            className=" mt-3"
+            variant="contained"
+            onClick={randomHideDice}
+          >
+            Roll Dice
+          </Button>
+        ) : (
+          <Jeude hideDice={hideDice} />
+        )}
+      </div>
     </div>
   );
 }
