@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import './css/App.css'
 import img from './assets/dice-png-41766.png'
 import Button from "@mui/material/Button";
@@ -8,7 +7,6 @@ import Jeude from './components/Jeude';
 function App() {
 
   const [hideDice, setHideDice] = useState(0);
-  const [randomDice, setRandomDice] = useState(1);
 
   const randomHideDice=()=>{
     setHideDice(Math.floor(Math.random() * 6) + 1)
